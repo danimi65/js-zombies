@@ -271,7 +271,7 @@ takeItem(item){
  */
 
 eat(itemToEat){
-  if(this.getPack().indexOf(itemToEat) !== -1 && itemToEat instanceof Food){
+  if(this.getPack().indexOf(itemToEat) > -1 && itemToEat instanceof Food){
     this.getPack().splice(this.getPack().indexOf(itemToEat), 1);
     if(this.health  + itemToEat.energy <= this.getMaxHealth()){
       this.health = this.health + itemToEat.energy;
@@ -297,7 +297,7 @@ eat(itemToEat){
  */
 
 useItem(item){
-  if(item instanceof Weapon){
+  if(item instanceof Weapon && this.getPack().indexOf(item) > -1){
     this.getPack().splice(this.getPack().indexOf(item), 1);
     this.equipped = item;
   } else {
