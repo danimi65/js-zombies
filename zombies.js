@@ -169,8 +169,8 @@ class Food extends Item {
 
 takeItem(item){
 
-  if(this.getPack().length < 3){
-    this.getPack().push(item);
+  if(this._pack.length < 3){
+    this._pack.push(item);
     console.log(this.name + ' put in ' + item + ' to pack.');
   } else {
     console.log(this.name + ' was unable to put in' + item);
@@ -204,6 +204,17 @@ takeItem(item){
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
+
+ discardItem(item){
+  if(this._pack.indexOf(item) !== -1){
+    this._pack.splice(this._pack.indexOf(item), 1);
+     console.log(this.name + 'removed' + item + 'from pack.');
+    return true;
+  }else{
+    console.log(this.name + ' was unable to remove' + item + 'from pack.');
+    return false;
+  }
+ }
 
 
 /**
