@@ -206,7 +206,7 @@ takeItem(item){
  */
 
  discardItem(item){
-  if(this.getPack().indexOf(item) !== -1){
+  if(this.getPack().indexOf(item) > -1){
     this.getPack().splice(this.getPack().indexOf(item), 1);
      console.log(this.name + 'removed' + item + 'from pack.');
     return true;
@@ -238,7 +238,7 @@ takeItem(item){
  */
 
  equip (itemToEquip){
-  if(this.getPack().indexOf(itemToEquip) !== -1){
+  if(this.getPack().indexOf(itemToEquip) > -1){
   if(this.equipped){
   this.getPack().splice(this.getPack().indexOf(itemToEquip), 1, this.equipped);
   this.equipped = itemToEquip;
