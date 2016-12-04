@@ -239,13 +239,13 @@ takeItem(item){
 
  equip (itemToEquip){
   if(this.getPack().indexOf(itemToEquip) !== -1){
-    if(this.equipped){
-    this.getPack().splice(this.getPack().indexOf(itemToEquip), 1, this.equipped);
-    this.equipped = itemToEquip;
-    }else{
-    this.getPack().splice(this.getPack().indexOf(itemToEquip), 1);
-    this.equipped = itemToEquip;
-    }
+  if(this.equipped){
+  this.getPack().splice(this.getPack().indexOf(itemToEquip), 1, this.equipped);
+  this.equipped = itemToEquip;
+  }else{
+  this.getPack().splice(this.getPack().indexOf(itemToEquip), 1);
+  this.equipped = itemToEquip;
+  }
   }
 
  }
@@ -270,6 +270,18 @@ takeItem(item){
  * @param {Food} itemToEat  The food item to eat.
  */
 
+eat(itemToEat){
+  if(this.getPack().indexOf(itemToEat) !== -1 && itemToEat instanceof Food){
+    this.getPack().splice(this.getPack().indexOf(itemToEat), 1);
+    if(this.health  + itemToEat.energy <= this.getMaxHealth()){
+      this.health = this.health + itemToEat.energy;
+    }else{
+      this.health = this.getMaxHealth();
+  
+  }
+  }
+  
+}
 
 /**
  * Player Class Method => useItem(item)
@@ -284,6 +296,17 @@ takeItem(item){
  * @param {Item/Weapon/Food} item   The item to use.
  */
 
+useItem(item){
+  if(item instanceof Weapon){
+    this.getPack().splice(this.getPack().indexOf(item), 1);
+    this.equipped = item;
+  } else {
+  if(item instanceof Food){
+    this.getPack().splice(this.getPack().indexOf(item), 1);
+    this.health = this.health + item.energy;
+  }
+  }
+}
 
 /**
  * Player Class Method => equippedWith()
@@ -298,6 +321,17 @@ takeItem(item){
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
+
+
+ equippedWith(){
+  if(this.equipped){
+    console.log(this.name + ' is using ' + this.equipped.name);
+    return this.equipped.name;
+  }else{
+    console.log(this.name + ' not equipped.');
+    return false;
+  }
+ }
 
 }
 
@@ -317,6 +351,16 @@ takeItem(item){
  * @property {boolean} isAlive      Default value should be `true`.
  */
 
+ class Zombie{
+  constructor(health, strength, speed){
+    this.health= health;
+    this.strength= strength;
+    this.speed= speed;
+    this.isAlive = true;
+  }
+
+ }
+
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -332,6 +376,13 @@ takeItem(item){
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
+
+ class FastZombie extends Zombie {
+  constructor(health, strength, speed){
+    super(health, strength, speed);
+  }
+
+ }
 
 
 /**
@@ -355,6 +406,12 @@ takeItem(item){
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
+
+ class StrongZombie extends Zombie {
+  constructor(health, strength, speed){
+    super(health, strength, speed);
+  }
+ }
 
 
 /**
@@ -386,6 +443,12 @@ takeItem(item){
  */
 
 
+class RangedZombie extends Zombie {
+   constructor(health, strength, speed){
+    super(health, strength, speed);
+  }
+}
+
 
 /**
  * Class => ExplodingZombie(health, strength, speed)
@@ -408,6 +471,11 @@ takeItem(item){
  * -----------------------------
  */
 
+class ExplodingZombie extends Zombie {
+   constructor(health, strength, speed){
+    super(health, strength, speed);
+  }
+}
 
 
 
