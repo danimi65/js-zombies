@@ -169,8 +169,8 @@ class Food extends Item {
 
 takeItem(item){
 
-  if(this._pack.length < 3){
-    this._pack.push(item);
+  if(this.getPack().length < 3){
+    this.getPack().push(item);
     console.log(this.name + ' put in ' + item + ' to pack.');
   } else {
     console.log(this.name + ' was unable to put in' + item);
@@ -206,8 +206,8 @@ takeItem(item){
  */
 
  discardItem(item){
-  if(this._pack.indexOf(item) !== -1){
-    this._pack.splice(this._pack.indexOf(item), 1);
+  if(this.getPack().indexOf(item) !== -1){
+    this.getPack().splice(this.getPack().indexOf(item), 1);
      console.log(this.name + 'removed' + item + 'from pack.');
     return true;
   }else{
@@ -236,6 +236,19 @@ takeItem(item){
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
+
+ equip (itemToEquip){
+  if(this.getPack().indexOf(itemToEquip) !== -1){
+    if(this.equipped){
+    this.getPack().splice(this.getPack().indexOf(itemToEquip), 1, this.equipped);
+    this.equipped = itemToEquip;
+    }else{
+    this.getPack().splice(this.getPack().indexOf(itemToEquip), 1);
+    this.equipped = itemToEquip;
+    }
+  }
+
+ }
 
 
 /**
