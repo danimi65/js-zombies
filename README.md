@@ -23,7 +23,11 @@ For each test you complete:
 **Public Properties**
 `name`: string
 
+
+
+
 ----
+
 
 ## Weapon(name, damage)
 *Creates a weapon item.*
