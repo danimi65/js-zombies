@@ -19,3 +19,17 @@ describe('Item', () =>{
 
 
 });
+
+describe('Weapon', () => {
+  let weapon = new Zombies.weapon;
+
+  it('should be a class', () =>{
+    weapon.should.be.a.function;
+  });
+  it('should have a name', () =>{
+    weapon.should.have.property('name');
+  });
+  it('should have damage', () => {
+    weapon.should.have.property('damage');
+  });
+});
