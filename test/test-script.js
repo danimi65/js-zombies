@@ -32,4 +32,25 @@ describe('Weapon', () => {
   it('should have damage', () => {
     weapon.should.have.property('damage');
   });
+  it('should extend from Item', () => {
+    weapon.should.be.an.instanceof(Zombies.item);
+  });
+});
+
+
+describe('Food', ()=>{
+  let food = new Zombies.food;
+
+  it('should be a class', ()=>{
+    food.should.be.a.function;
+  });
+  it('should have name', ()=>{
+    food.should.have.property('name');
+  });
+  it('should have energy', ()=>{
+    food.should.have.property('energy');
+  });
+  it('should extend from Item', ()=>{
+    food.should.be.an.instanceof(Zombies.item);
+  });
 });
