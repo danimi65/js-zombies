@@ -478,8 +478,7 @@ class ExplodingZombie extends Zombie {
 }
 
 
-
-/**
+/*
  * Sample run.
  * Feel free to edit this and check your game logic.
  */
